@@ -1,0 +1,57 @@
+.wrapper{
+    height: auto;
+    width: 100%;
+    margin-bottom: 150px;
+    border:2px solid #5e5d5d;
+}
+.heading{
+    text-align: center;
+    background-color: #E9ECEF;
+    font-family: "Apple Color Emoji";
+    padding-top: 10px;
+    margin-top: 50px;
+}
+.content{
+    text-align: left;
+}
+.line{
+    border-bottom: 1px solid #000;
+}
+.img{
+    height:140px;
+    width:127px;
+    margin-bottom: 30px;
+}
+.h3{
+    font-weight: lighter;
+    font-size: 32px;
+    font-family: monospace;
+}
+.accademy_section{
+    text-align: left;
+}
+label{
+    font-size: 17px;
+    font-weight: lighter;
+}
+.span{
+    text-align: left;
+    font-weight: bold;
+}
+.img {
+    margin-top: 43px;
+    vertical-align: middle;
+}
+#height-20{
+    height: 20px;
+}
+.height-30{
+    height: 30px;
+}
+#height-10{
+    height: 10px;
+}
+footer>p{
+    text-align: right;
+    margin-top: 20px;
+}
