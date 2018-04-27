@@ -39,23 +39,37 @@ class markController extends Controller
     public function store(Request $request)
     {
 
-        $input=$request->all();
+        // $input=$request->all();
+        
 
-        $validator=Validator::make($request->all(),[
+        // $validator=Validator::make($request->all(),[
 
-            'student_id'=>'required',
-            'exam_id'=>'required',
-            'subject_code'=>'required',
-            'year'=>'required',
-            'mark'=>'required',
+        //     'student_id'=>'required',
+        //     'exam_id'=>'required',
+        //     'subject_code'=>'required',
+        //     'year'=>'required',
+        //     'mark'=>'required',
 
-        ]);
+        // ]);
 
-        if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput();
+        // if($validator->fails()){
+        //     return redirect()->back()->withErrors($validator)->withInput();
+        // }
+        // $data=markModel::create($input);
+        // return redirect('/mark')->with('success','Succesfylly data added!!');
+
+        $marks= $request->mark;
+        $subjects= $request->subject;
+        $count = count($marks);
+        $sid = $request->student_id;
+        for($i=0; $i < $count; $i++){
+            $mark=$marks[$i];
+            $subject=$subjects[$i];
+            DB::table('mark')->insert(
+                ['student_id'=>$sid, 'subject_code'=>$subject, 'mark'=>$mark]
+            );
+           return redirect('/student')->with('success','Successfully Mark Add');   
         }
-        $data=markModel::create($input);
-        return redirect('/mark')->with('success','Succesfylly data added!!');
     }
 
 
@@ -118,4 +132,12 @@ class markController extends Controller
         $subjects=DB::table('subject')->where('class','=',$class)->get();
         return view('mark.mark_entry', compact('subjects', 'student'));
     }
+
+    public function marksheet($sid, $exam, $year)
+    {
+        $student=DB::table('student_add')->where('sid','=',$sid)->get();
+        $marks=DB::table('mark')->where('year', '=', $year)->where('exam_id', '=', $exam)->where('student_id', '=', $sid)->get();
+        return view('mark.marksheet', compact('student', 'marks'));
+    }
+
 }

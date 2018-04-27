@@ -32,6 +32,7 @@ Route::group(['middleware'=>'auth'],function(){
 
     Route::resource('/mark','markController');
     Route::get('/mark/new/{id}','markController@marks');
+    Route::get('/marksheet/{sid?}/{exam?}/{year?}','markController@marksheet');
 
     Route::resource('/exam','examController');
 
